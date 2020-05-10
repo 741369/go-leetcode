@@ -1,6 +1,6 @@
 /**********************************************
 ** @Des: 999. available-captures-for-rook
-** @Author: liuzhiwang
+** @Author: 1@lg1024.com
 ** @Last Modified time: 2020/3/26 下午5:45
 ***********************************************/
 

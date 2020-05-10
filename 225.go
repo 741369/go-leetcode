@@ -1,6 +1,6 @@
 /**********************************************
 ** @Des: 225.用队列实现栈操作
-** @Author: liuzhiwang
+** @Author: 1@lg1024.com
 ** @Last Modified time: 2019/9/16 下午4:09
 ***********************************************/
 
@@ -20,7 +20,7 @@ func Constructor() MyStack {
 }
 
 /** Push element x onto stack */
-func (myStack *MyStack) Push(x int)  {
+func (myStack *MyStack) Push(x int) {
 	myStack.stack = append(myStack.stack, x)
 }
 
