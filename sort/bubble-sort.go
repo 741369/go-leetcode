@@ -7,6 +7,7 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	"math"
 	"strconv"
@@ -14,17 +15,44 @@ import (
 
 func main() {
 	arr := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
-	fmt.Println("====", BubbleSort(arr))
-	fmt.Println("====", InsertSort(arr))
-	fmt.Println("====", SelectionSort(arr))
-	fmt.Println("====", ShellSort(arr))
-	fmt.Println("====", QuickSort(arr))
-	fmt.Println("====", HeadSort(arr))
-	fmt.Println("====", MergeSort(arr))
-	fmt.Println("====", CountSort(arr))
-	fmt.Println("====", BinSort(arr))
-	fmt.Println("====", RadixSort(arr))
-	fmt.Println("====", TopK(arr, 5))
+	fmt.Println("冒泡====", BubbleSort(arr))
+
+	arr2 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("插入====", InsertSort(arr2))
+
+	arr3 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("选择====", SelectionSort(arr3))
+
+	arr4 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("希尔====", ShellSort(arr4))
+
+	arr5 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("快排====", QuickSort(arr5))
+
+	arr52 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("快排2====", QuickSort2(arr52))
+
+	arr6 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("堆排====", HeapSort(arr6))
+
+	arr7 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("归并====", MergeSort(arr7))
+
+	arr8 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("计数====", CountSort(arr8))
+
+	arr9 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("桶排序====", BinSort(arr9))
+
+	arr10 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("基数====", RadixSort(arr10))
+
+	arr11 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("Top(n)====", TopK(arr11, 5))
+
+	arr12 := []int{47, 29, 71, 78, 19, 24, 47}
+	//arr12 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	fmt.Println("Top(n)====", TopK2(arr12, 6))
 }
 
 // 冒泡排序
@@ -116,47 +144,91 @@ func QuickSort(arr []int) []int {
 
 func quickSort(arr []int, left, right int) {
 	if left < right {
-		index := arr[left]
-		low, high := left, right
-		for low < high {
-			for low < high && index <= arr[high] {
-				high--
-			}
-			arr[low] = arr[high]
-			for low < high && index >= arr[low] {
-				low++
-			}
-			arr[high] = arr[low]
-		}
-		arr[low] = index
-		quickSort(arr, left, low)
-		quickSort(arr, low+1, right)
+		p := partition(arr, left, right)
+		quickSort(arr, left, p-1)
+		quickSort(arr, p+1, right)
 	}
 }
 
+func partition(arr []int, left int, right int) int {
+	i, j, temp := left, right, arr[left]
+	for i < j {
+		for i < j && temp < arr[j] {
+			j--
+		}
+		for i < j && temp >= arr[i] {
+			i++
+		}
+		if i < j {
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+	arr[i], arr[left] = arr[left], arr[i]
+	return i
+}
+
+// 快速排序2
+func QuickSort2(arr []int) []int {
+	quickSort2(arr, 0, len(arr)-1)
+	return arr
+}
+func quickSort2(arr []int, left int, right int) {
+	if left < right {
+		p := partition2(arr, left, right)
+		quickSort2(arr, left, p-1)
+		quickSort2(arr, p+1, right)
+	}
+}
+
+func partition2(arr []int, left int, right int) int {
+	i, j, temp := left, left, arr[right]
+	for ; j < right; j++ {
+		if arr[j] < temp {
+			arr[i], arr[j] = arr[j], arr[i]
+			i++
+		}
+	}
+	arr[right], arr[i] = arr[i], arr[right]
+	return i
+}
+
 // 堆排序
-func HeadSort(arr []int) []int {
+func HeapSort(arr []int) []int {
 	for i := len(arr) / 2; i >= 0; i-- {
-		initHead(arr, i, len(arr))
+		initHeap(arr, i, len(arr))
 	}
 
 	for i := len(arr) - 1; i > 0; i-- {
 		arr[0], arr[i] = arr[i], arr[0]
-		initHead(arr, 0, i)
+		initHeap(arr, 0, i)
 	}
 	return arr
 }
-func initHead(nums []int, parent, len int) {
+
+/**
+ *  下沉操作，执行删除操作相当于把最后
+ *  * 一个元素赋给根元素之后，然后对根元素执行下沉操作
+ * @param arr
+ * @param parent 要下沉元素的下标
+ * @param length 数组长度
+ */
+func initHeap(nums []int, parent, len int) {
+	//临时保证要下沉的元素
 	temp := nums[parent]
+	//定位左孩子节点位置
 	child := 2*parent + 1
 
+	//开始下沉
 	for child < len {
+		//如果右孩子节点比左孩子小，则定位到右孩子
 		if child+1 < len && nums[child] < nums[child+1] {
 			child++
 		}
+		//如果父节点比孩子节点小或等于，则下沉结束
 		if child < len && nums[child] <= temp {
 			break
 		}
+		//单向赋值
 		nums[parent] = nums[child]
 		parent = child
 		child = child*2 + 1
@@ -178,8 +250,7 @@ func mergeSort(arr []int, left, right int) {
 	}
 }
 func merge(arr []int, left, mid, right int) {
-	i := left
-	j := mid + 1
+	i, j := left, mid+1
 	var tmp []int
 	for i <= mid && j <= right {
 		if arr[i] <= arr[j] {
@@ -311,12 +382,11 @@ func TopK(arr []int, k int) []int {
 	}
 	return arr[:k]
 }
-func sift(arr []int, low, high int) {
-	i := low
-	j := 2*i + 1
-	tmp := arr[i]
-	for j <= high {
-		if j < high && arr[j] > arr[j+1] {
+func sift(arr []int, left, right int) {
+	i, j := left, 2*left+1
+	tmp := arr[left]
+	for j <= right {
+		if j < right && arr[j] > arr[j+1] {
 			j++
 		}
 		if tmp > arr[j] {
@@ -328,4 +398,76 @@ func sift(arr []int, low, high int) {
 		}
 	}
 	arr[i] = tmp
+}
+
+func TopK2(arr []int, k int) []int {
+	TopK2Sort(arr, 0, len(arr)-1, k)
+	return arr[len(arr)-k:]
+}
+
+func TopK2Sort(arr []int, left, right, k int) {
+	if left < right {
+		p := partition(arr, left, right)
+		if p == k-1 {
+			return
+		} else if p > k-1 {
+			TopK2Sort(arr, left, p-1, k)
+		} else {
+			TopK2Sort(arr, p+1, right, k)
+		}
+	}
+}
+
+//堆排序(大顶堆)
+func smallestK(arr []int, k int) []int {
+	if arr == nil || len(arr) == 0 || k == 0 {
+		return nil
+	}
+	res := make([]int, 0)
+	//构建堆
+	h := &IntHeap{}
+	heap.Init(h)
+	for i := 0; i < len(arr); i++ {
+		if h.Len() < k { //维持一个k大小的堆
+			heap.Push(h, arr[i])
+		} else { //当新加入数时，如果当前堆顶
+			//元素大于当前数，把堆顶元素弹出，加入新数
+			top := heap.Pop(h)
+			if top.(int) > arr[i] {
+				heap.Push(h, arr[i])
+			} else {
+				heap.Push(h, top)
+			}
+		}
+	}
+	for h.Len() != 0 {
+		res = append(res, heap.Pop(h).(int))
+	}
+	return res
+}
+
+//构建大顶堆
+type IntHeap []int
+
+func (h IntHeap) Len() int {
+	return len(h)
+}
+
+func (h IntHeap) Less(i, j int) bool {
+	return h[i] > h[j]
+}
+
+func (h IntHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *IntHeap) Push(x interface{}) {
+	*h = append(*h, x.(int))
+}
+
+func (h *IntHeap) Pop() interface{} {
+	old := *h
+	x := old[len(old)-1]
+	*h = old[:len(old)-1]
+	return x
 }
