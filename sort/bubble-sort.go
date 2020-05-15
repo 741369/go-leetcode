@@ -27,7 +27,9 @@ func main() {
 	fmt.Println("希尔====", ShellSort(arr4))
 
 	arr5 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
+	nums := []int{-1, 0, 1, 2, -1, -4}
 	fmt.Println("快排====", QuickSort(arr5))
+	fmt.Println("快排====", QuickSort(nums))
 
 	arr52 := []int{3, 2, 4, 1, 6, 5, 7, 9, 8}
 	fmt.Println("快排2====", QuickSort2(arr52))
