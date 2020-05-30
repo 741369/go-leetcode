@@ -26,11 +26,105 @@ import (
 //
 // Related Topics 双指针 Sliding Window
 func main() {
-	fmt.Println(checkInclusion("ab", "eidbaooo"))
+	fmt.Println(checkInclusion("adc", "dcda"))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// 优化的滑动窗口
+func checkInclusion7(s1 string, s2 string) bool {
+	cnt1, cnt2 := [26]int{}, [26]int{}
+
+	for i := range s1 {
+		cnt1[s1[i]-'a']++
+	}
+
+	start := 0
+	for j := range s2 {
+		cnt2[s2[j]-'a']++
+		for start <= j && cnt2[s2[start]-'a'] > cnt1[s2[start]-'a'] {
+			cnt2[s2[start]-'a']--
+			start++
+		}
+		if cnt1 == cnt2 {
+			return true
+		}
+	}
+	return cnt1 == cnt2
+}
+
+// 更优化的滑动窗口，减少比较次数，cnt1 和 cnt2 一起初始化
 func checkInclusion(s1 string, s2 string) bool {
+	if len(s1) > len(s2) {
+		return false
+	}
+	cnt1, cnt2 := [26]int{}, [26]int{}
+	for i := range s1 {
+		cnt1[s1[i]-'a']++
+		cnt2[s2[i]-'a']++
+	}
+	for i := 0; i < len(s2)-len(s1); i++ {
+		if cnt1 == cnt2 {
+			return true
+		}
+		cnt2[s2[i]-'a']--
+		cnt2[s2[i+len(s1)]-'a']++
+	}
+	return cnt1 == cnt2
+}
+
+// 简单的滑动窗口
+func checkInclusion5(s1, s2 string) bool {
+	if len(s1) > len(s2) {
+		return false
+	}
+	m1, m2 := map[byte]int{}, map[byte]int{}
+	for i := 0; i < len(s1); i++ {
+		m1[s1[i]]++
+		m2[s2[i]]++
+	}
+
+	for i := 0; i < len(s2)-len(s1); i++ {
+		if match(m1, m2) {
+			return true
+		}
+		fmt.Println("==", m1, "==", m2)
+		m2[s2[i]]--
+		m2[s2[i+len(s1)]]++
+		fmt.Println("==", "==", m2)
+	}
+	return match(m1, m2)
+}
+
+func match(m1, m2 map[byte]int) bool {
+	for k := range m1 {
+		if m1[k] != m2[k] {
+			return false
+		}
+	}
+	return true
+}
+
+func checkInclusion4(s1 string, s2 string) bool {
+	for i := 0; i <= len(s2)-len(s1); i++ {
+		s2Tmp := s2[i : i+len(s1)]
+		for _, v := range []byte(s1) {
+			if index := strings.IndexByte(s2Tmp, v); index == -1 {
+				fmt.Println("=====", s2Tmp, "==", v, "==", index)
+				break
+			} else {
+				tmp := []byte(s2Tmp)
+				s2Tmp = string(tmp[:index]) + string(tmp[index+1:])
+			}
+		}
+		fmt.Println("===========", s2Tmp)
+		if s2Tmp == "" {
+			return true
+		}
+	}
+	return false
+}
+
+func checkInclusion3(s1 string, s2 string) bool {
 	res := permutation(s1)
 	for k := range res {
 		if strings.Contains(s2, k) {
