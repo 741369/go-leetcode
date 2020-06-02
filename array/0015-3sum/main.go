@@ -60,25 +60,30 @@ func partition(nums []int, left int, right int) int {
 func threeSum(nums []int) [][]int {
 	sumArr := make([][]int, 0)
 
+	// 1. 排序，判断边界条件
 	sortArr(nums, 0, len(nums)-1)
 	if len(nums) < 3 {
 		return nil
 	}
 
 	if nums[0] <= 0 && nums[len(nums)-1] >= 0 {
+		// 2. 从第一个元素到倒数第二个元素遍历，加上left，right两个指针构成3个元素
 		for k := 0; k < len(nums)-2; k++ {
+			// 判断边界条件，第一个元素大于0则不满足条件
 			if nums[k] > 0 {
 				break
 			}
-			// 去重
+			// 去重,和前面的元素值相同的可以过滤掉
 			if k > 0 && nums[k] == nums[k-1] {
 				continue
 			}
 			left, right := k+1, len(nums)-1
 			for left < right {
+				// 3. 左右指针元素和遍历元素之和满足条件则添加成功队列，不满足则指针左右移动
 				target := nums[k] + nums[left] + nums[right]
 				if target == 0 {
 					sumArr = append(sumArr, []int{nums[k], nums[left], nums[right]})
+					// 对满足条件的元素，相同的去重
 					for left < right && nums[left] == nums[left+1] {
 						left++
 					}
