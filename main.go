@@ -7,24 +7,40 @@
 package main
 
 import (
-	"github.com/bwmarrin/snowflake"
 	"fmt"
+	"sync"
 )
 
 func main()  {
-	for i := 0; i < 10; i ++ {
-		println(t(int64(i)))
-	}
+	printStr("1234567890")
+	fmt.Println("==================done")
 }
 
-func t(i int64) int64 {
-	node, err := snowflake.NewNode(i)
-	if err != nil {
-		return 0
-	}
-	fmt.Println(node.Generate().Base2())
-	fmt.Println(string(node.Generate().Bytes()))
-	fmt.Println(node.Generate().Base36())
+func printStr(str string) {
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
 
-	return node.Generate().Int64()
+	ch1, ch2 := make(chan int), make(chan int)
+
+	go func() {
+		for i := 0; i < len(str); i += 2 {
+			<- ch1
+			fmt.Println(string(str[i]))
+			ch2 <- 1
+		}
+		<- ch1
+		wg.Done()
+	}()
+
+	go func() {
+		for i := 1; i < len(str); i += 2 {
+			<- ch2
+			fmt.Println(string(str[i]))
+			ch1 <- 1
+		}
+		wg.Done()
+	}()
+	ch1 <- 1
+	wg.Wait()
 }
+
