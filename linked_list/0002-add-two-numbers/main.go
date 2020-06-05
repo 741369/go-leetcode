@@ -40,13 +40,16 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 }
 
 func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
-	l := l1
-	var carry int
+	// 此题思路，只要2个链表有一个为空，且没有进位，就可以链表合并（当前链表长一些的不用合并），退出循环
+	head, carry := l1, 0
 	for {
-		l1.Val += l2.Val + carry
+		// 能进for循环说明，l1.Next l2.Next 都不为空，或者carry>0
+		l1.Val += carry + l2.Val
 		carry = l1.Val / 10
 		l1.Val = l1.Val % 10
+
 		if l2.Next == nil {
+			// 如果l2为空，且没有进位，则直接返回l1为最终结果，意思len(l1) > len(l2)
 			if carry == 0 {
 				break
 			}
@@ -54,6 +57,7 @@ func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 		if l1.Next == nil {
 			if carry == 0 {
+				// 如果l1为空，且没有进位，将l2.Next放到l1.Next之后就完事
 				l1.Next = l2.Next
 				break
 			}
@@ -62,7 +66,7 @@ func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 		l1 = l1.Next
 		l2 = l2.Next
 	}
-	return l
+	return head
 }
 
 /**
