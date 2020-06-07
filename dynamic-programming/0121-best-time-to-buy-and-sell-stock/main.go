@@ -29,7 +29,10 @@
 // Related Topics 数组 动态规划
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	fmt.Println("========", maxProfit([]int{7,1,5,3,6,4}))
@@ -37,7 +40,7 @@ func main() {
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func maxProfit(prices []int) int {
+func maxProfit2(prices []int) int {
 	if len(prices) == 0 {
 		return 0
 	}
@@ -54,3 +57,19 @@ func maxProfit(prices []int) int {
 	return max
 }
 //leetcode submit region end(Prohibit modification and deletion)
+func maxProfit(prices []int) int {
+	dpi0 := 0
+	dpi1 := math.MinInt64
+	for i := 0; i < len(prices); i ++ {
+		dpi0 = max(dpi0, dpi1+prices[i])
+		dpi1 = max(dpi1, -prices[i])
+	}
+	return dpi0
+}
+
+func max(i, j int) int {
+	if i > j {
+		return i
+	}
+	return j
+}
