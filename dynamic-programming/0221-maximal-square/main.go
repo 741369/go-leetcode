@@ -59,7 +59,6 @@ func maximalSquare(matrix [][]byte) int {
 		}
 	}
 	fmt.Printf("%#v\n", dp)
-
 	return max * max
 }
 
