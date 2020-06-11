@@ -53,7 +53,7 @@ import "fmt"
  */
 
 func main() {
-	root := &TreeNode{
+	/*root := &TreeNode{
 		Val: 1,
 		Left: &TreeNode{
 			Val: 2,
@@ -81,9 +81,31 @@ func main() {
 				Right: nil,
 			},
 		},
+	}*/
+	root := &TreeNode{
+		Val: 1,
+		Left: &TreeNode{
+			Val:  2,
+			Left: nil,
+			Right: &TreeNode{
+				Val:   3,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+		Right: &TreeNode{
+			Val:  2,
+			Left: nil,
+			Right: &TreeNode{
+				Val:   3,
+				Left:  nil,
+				Right: nil,
+			},
+		},
 	}
+
 	dfs(root)
-	temp := mirrorTree2(root)
+	temp := mirrorTree(root)
 	fmt.Println("")
 	dfs(temp)
 }
@@ -147,7 +169,7 @@ func dfs(root *TreeNode) {
 	if root == nil {
 		return
 	}
-	fmt.Print(root.Val)
+	fmt.Printf("%d\t", root.Val)
 	dfs(root.Left)
 	dfs(root.Right)
 }
