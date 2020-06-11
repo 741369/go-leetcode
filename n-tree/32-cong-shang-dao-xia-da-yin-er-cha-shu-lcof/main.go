@@ -81,8 +81,8 @@ func levelOrder(root *TreeNode) []int {
 	if root == nil {
 		return []int{}
 	}
-	stack := []*TreeNode{}
-	res := []int{}
+	var stack []*TreeNode
+	var res []int
 	stack = append(stack, root)
 	for len(stack) > 0 {
 		node := stack[0]
