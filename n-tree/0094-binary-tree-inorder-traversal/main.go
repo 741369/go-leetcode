@@ -63,9 +63,9 @@ func main() {
 			},
 		},
 	}
-	fmt.Printf("preorder迭代 =====  %#v\n", preorderTraversal(root))
-	fmt.Printf("inorder迭代 =====  %#v\n", inorderTraversal(root))
-	fmt.Printf("postorder迭代 =====  %#v\n", postorderTraversal(root))
+	fmt.Printf("preorder迭代 =====  %#v\n", preorderTraversal2(root))
+	fmt.Printf("inorder迭代 =====  %#v\n", inorderTraversal2(root))
+	fmt.Printf("postorder迭代 =====  %#v\n", postorderTraversal2(root))
 
 	fmt.Printf("preorder递归 ===== %#v\n", preorderdfs(root))
 	fmt.Printf("inorder递归 ===== %#v\n", inorderdfs(root))
@@ -93,6 +93,33 @@ func preorderTraversal(root *TreeNode) []int {
 	return res
 }
 
+func preorderTraversal2(root *TreeNode) []int {
+	var res []int
+	if root == nil {
+		return res
+	}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if cur != nil {
+			if cur.Right != nil {
+				stack = append(stack, cur.Right)
+			}
+			if cur.Left != nil {
+				stack = append(stack, cur.Left)
+			}
+			stack = append(stack, cur)
+			stack = append(stack, nil)
+		} else {
+			tmp := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			res = append(res, tmp.Val)
+		}
+	}
+	return res
+}
+
 // 迭代 中序
 func inorderTraversal(root *TreeNode) []int {
 	var (
@@ -110,6 +137,33 @@ func inorderTraversal(root *TreeNode) []int {
 		res = append(res, stack[index].Val)
 		root = stack[index].Right
 		stack = stack[:index]
+	}
+	return res
+}
+
+func inorderTraversal2(root *TreeNode) []int {
+	var res []int
+	if root == nil {
+		return res
+	}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if cur != nil {
+			if cur.Right != nil {
+				stack = append(stack, cur.Right)
+			}
+			stack = append(stack, cur)
+			stack = append(stack, nil)
+			if cur.Left != nil {
+				stack = append(stack, cur.Left)
+			}
+		} else {
+			tmp := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			res = append(res, tmp.Val)
+		}
 	}
 	return res
 }
@@ -132,12 +186,39 @@ func postorderTraversal(root *TreeNode) []int {
 			stack = append(stack, node.Right)
 		}
 	}
+	return res
+}
 
+// 迭代 后序2
+func postorderTraversal2(root *TreeNode) []int {
+	var res []int
+	if root == nil {
+		return res
+	}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if cur != nil {
+			stack = append(stack, cur)
+			stack = append(stack, nil)
+			if cur.Right != nil {
+				stack = append(stack, cur.Right)
+			}
+			if cur.Left != nil {
+				stack = append(stack, cur.Left)
+			}
+		} else {
+			tmp := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			res = append(res, tmp.Val)
+		}
+	}
 	return res
 }
 
 // 递归
-func inorderTraversal2(root *TreeNode) []int {
+func inorderTraversal3(root *TreeNode) []int {
 	return inorderdfs(root)
 }
 //leetcode submit region end(Prohibit modification and deletion)
