@@ -53,7 +53,6 @@ func main() {
 	}
 	res := levelOrder(tree)
 	fmt.Printf("%#v\n", res)
-
 }
 
 type TreeNode struct {
@@ -63,7 +62,7 @@ type TreeNode struct {
 }
 
 func levelOrder(root *TreeNode) [][]int {
-	res := [][]int{}
+	var res [][]int
 	if root == nil {
 		return res
 	}
@@ -71,7 +70,7 @@ func levelOrder(root *TreeNode) [][]int {
 	q := []*TreeNode{root}
 	for i := 0; len(q) > 0; i++ {
 		res = append(res, []int{})
-		p := []*TreeNode{}
+		var p []*TreeNode
 		for j := 0; j < len(q); j++ {
 			node := q[j]
 			res[i] = append(res[i], node.Val)
