@@ -37,14 +37,30 @@ import "fmt"
 // 你的算法的时间复杂度应为O(n)，并且只能使用常数级别的额外空间。
 // Related Topics 数组
 func main() {
-	//fmt.Println(firstMissingPositive([]int{1,2,0}))
+	fmt.Println(firstMissingPositive([]int{1,2,0}))
 	fmt.Println(firstMissingPositive([]int{3,4,-1,1}))
-	//fmt.Println(firstMissingPositive([]int{7,8,9,11,12}))
+	fmt.Println(firstMissingPositive([]int{7,8,9,11,12}))
+}
+// 数组交换
+func firstMissingPositive(nums []int) int {
+	n := len(nums)
+	for i := 0; i < n; i ++ {
+		for nums[i] > 0 && nums[i] <= n && nums[nums[i]-1] != nums[i] {
+			nums[i], nums[nums[i]-1] = nums[nums[i]-1], nums[i]
+		}
+	}
+
+	for i := 0; i < n; i ++ {
+		if nums[i] != i +1 {
+			return i+1
+		}
+	}
+	return n+1
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 // 默认数组实现哈希表
-func firstMissingPositive(nums []int) int {
+func firstMissingPositive2(nums []int) int {
 	n := len(nums)
 
 	// 将所有小于0的值都赋值为n，
