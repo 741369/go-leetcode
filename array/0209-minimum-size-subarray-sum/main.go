@@ -34,8 +34,27 @@ func main() {
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
-// 暴力法
 func minSubArrayLen(s int, nums []int) int {
+	ans := len(nums) + 1
+	sum, start, end := 0, 0, 0
+	for end < len(nums) {
+		sum += nums[end]
+		for sum >= s {
+			ans = min(ans, end-start+1)
+			sum -= nums[start]
+			start ++
+		}
+		end++
+	}
+
+
+	if ans == len(nums) + 1{
+		return 0
+	}
+	return ans
+}
+// 暴力法
+func minSubArrayLen2(s int, nums []int) int {
 	ans := len(nums) + 1
 	for i := 0; i < len(nums); i ++ {
 		tmp := 0
