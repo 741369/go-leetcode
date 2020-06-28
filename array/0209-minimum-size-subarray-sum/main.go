@@ -46,8 +46,6 @@ func minSubArrayLen(s int, nums []int) int {
 		}
 		end++
 	}
-
-
 	if ans == len(nums) + 1{
 		return 0
 	}
