@@ -21,31 +21,55 @@ import "fmt"
 
 func main() {
 	nums := []int{3, 2, 1, 5, 6, 4}
-	fmt.Printf("%d\n", findKthLargest(nums, 2))
+	fmt.Printf("%d\n", findKthLargest(nums, len(nums)-2))
 	p := quickSort(nums, 2, 0, len(nums)-1)
 	fmt.Printf("%#v, %d\n", nums, p)
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func findKthLargest(nums []int, k int) int {
-	return quickSort(nums, k-1, 0, len(nums)-1)
+	return quickSort(nums, k, 0, len(nums)-1)
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
-
-// 快速排序方法
 func quickSort(nums []int, k int, left int, right int) int {
-	if left < right {
 		p := partition(nums, left, right)
 		if p == k {
 			return nums[p]
+		} else if p < k {
+			return quickSort(nums, k, p+1, right)
 		}
-		quickSort(nums, k, left, p-1)
-		quickSort(nums, k, p+1, right)
+		return quickSort(nums, k, left, p-1)
+}
+
+func partition(nums []int, left int, right int) int  {
+	i, temp := left-1, nums[right]
+	// i指向比nums[right]小的最后一个元素
+	// j指向比nums[right]不小的最后一个元素
+	for j := left; j < right; j ++ {
+		if nums[j] <= temp {
+			i++
+			nums[i], nums[j] = nums[j], nums[i]
+		}
+	}
+	nums[i+1], nums[right] = nums[right], nums[i+1]
+	return i+1
+}
+
+
+// 快速排序方法, O(nlogn)
+func quickSort2(nums []int, k int, left int, right int) int {
+	if left < right {
+		p := partition2(nums, left, right)
+		if p == k {
+			return nums[p]
+		}
+		quickSort2(nums, k, left, p-1)
+		quickSort2(nums, k, p+1, right)
 	}
 	return nums[k]
 }
-func partition(nums []int, left int, right int) int {
+func partition2(nums []int, left int, right int) int {
 	i, j, temp := left, right, nums[left]
 	for i < j {
 		for i < j && temp > nums[j] {

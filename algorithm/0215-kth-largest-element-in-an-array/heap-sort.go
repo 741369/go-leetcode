@@ -22,11 +22,11 @@ import "fmt"
 func main() {
 	nums := []int{7, 3, 8, 5, 1, 2}
 	//findKthLargest(nums, len(nums))
-	fmt.Println("========", findKthLargest(nums, 2))
+	fmt.Println("========", findKthLargest2(nums, 2))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func findKthLargest(nums []int, k int) int {
+func findKthLargest2(nums []int, k int) int {
 	heapSort(nums, len(nums))
 	return nums[k-1]
 }
