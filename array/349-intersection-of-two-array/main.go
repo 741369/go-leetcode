@@ -6,7 +6,10 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 //给定两个数组，编写一个函数来计算它们的交集。
 //
@@ -38,9 +41,37 @@ func main() {
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// 双指针
 func intersection(nums1 []int, nums2 []int) []int {
+	res := make([]int, 0)
+
+	sort.Ints(nums1)
+	sort.Ints(nums2)
+
+	i, j := 0, 0
+	for i < len(nums1) && j < len(nums2) {
+		if nums1[i] == nums2[j] {
+			if i == 0 {
+				res = append(res, nums1[i])
+			} else if nums1[i] != nums1[i-1] {
+				res = append(res, nums1[i])
+			}
+			i++
+			j++
+		} else if nums1[i] < nums2[j] {
+			i ++
+		} else {
+			j ++
+		}
+	}
+	return res
+}
+
+
+// 哈希
+func intersection2(nums1 []int, nums2 []int) []int {
 	if len(nums1) > len(nums2) { // 减少空间复杂度，存储小的数组
-		return intersection(nums2, nums1)
+		return intersection2(nums2, nums1)
 	}
 	res := make([]int, 0)
 
