@@ -47,23 +47,27 @@ func main() {
 //leetcode submit region begin(Prohibit modification and deletion)
 func minimumTotal(triangle [][]int) int {
 	n := len(triangle)
-	f := make([][]int, n)
-	for i := 0; i < n; i++ {
-		f[i] = make([]int, n)
+	dp := make([][]int, 2)
+
+	for i := 0; i < 2 ; i ++ {
+		dp[i] = make([]int, n)
 	}
-	f[0][0] = triangle[0][0]
+	dp[0][0] = triangle[0][0]
 	for i := 1; i < n; i++ {
-		f[i][0] = f[i - 1][0] + triangle[i][0]
+		cur := i % 2
+		pre := 1 - cur
+		dp[cur][0] = dp[pre][0] + triangle[i][0]
 		for j := 1; j < i; j++ {
-			f[i][j] = min(f[i - 1][j - 1], f[i - 1][j]) + triangle[i][j]
+			dp[cur][j] = min(dp[pre][j-1], dp[pre][j])+triangle[i][j]
 		}
-		f[i][i] = f[i - 1][i - 1] + triangle[i][i]
+		dp[cur][i] = dp[pre][i-1] + triangle[i][i]
 	}
-	ans := math.MaxInt32
+	fmt.Printf("%#v\n", dp)
+	res := math.MaxInt64
 	for i := 0; i < n; i++ {
-		ans = min(ans, f[n-1][i])
+		res = min(res, dp[(n-1)%2][i])
 	}
-	return ans
+	return res
 }
 
 func minimumTotal2(triangle [][]int) int {
@@ -77,11 +81,11 @@ func minimumTotal2(triangle [][]int) int {
 	for i := 1; i < n; i++ {
 		dp[i][0] = dp[i-1][0] + triangle[i][0]
 		for j := 1; j < i; j++ {
-			dp[i][j] = min(dp[i-1][j-1], dp[i-1][j]+triangle[i][j])
+			dp[i][j] = min(dp[i-1][j-1], dp[i-1][j])+triangle[i][j]
 		}
 		dp[i][i] = dp[i-1][i-1] + triangle[i][i]
 	}
-
+	fmt.Printf("%#v\n", dp)
 	res := math.MaxInt64
 	for i := 0; i < n; i++ {
 		res = min(res, dp[n-1][i])
