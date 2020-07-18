@@ -53,14 +53,14 @@ import "fmt"
 //
 // Related Topics 深度优先搜索 广度优先搜索 图
 func main() {
-	fmt.Println("=====", isBipartite([][]int{{1,3},{0,2},{1,3},{0,2}}))
+	fmt.Println("=====", isBipartite([][]int{{1, 3}, {0, 2}, {1, 3}, {0, 2}}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 var (
 	UNCOLORED, RED, GREEN = 0, 1, 2
-	color []int
-	valid bool
+	color                 []int
+	valid                 bool
 )
 
 func isBipartite(graph [][]int) bool {

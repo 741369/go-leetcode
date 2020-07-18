@@ -34,14 +34,14 @@ import "fmt"
 // Related Topics 数组
 
 func main() {
-	fmt.Println("===", maxScoreSightseeingPair([]int{8,1,5,2,6}))
+	fmt.Println("===", maxScoreSightseeingPair([]int{8, 1, 5, 2, 6}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func maxScoreSightseeingPair(A []int) int {
 	ans, mx := 0, A[0]+0
-	for j := 1; j < len(A); j ++ {
-		ans = max(ans, A[j] + mx - j)
+	for j := 1; j < len(A); j++ {
+		ans = max(ans, A[j]+mx-j)
 		mx = max(mx, A[j]+j)
 	}
 	return ans
@@ -53,5 +53,5 @@ func max(i, j int) int {
 	}
 	return j
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

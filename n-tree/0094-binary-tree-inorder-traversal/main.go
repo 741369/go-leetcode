@@ -24,7 +24,6 @@ import "fmt"
 // 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
 // Related Topics 栈 树 哈希表
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -36,8 +35,8 @@ import "fmt"
  */
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -46,11 +45,11 @@ func main() {
 		Val: 1,
 		Left: &TreeNode{
 			Val: 2,
-			Left:&TreeNode{
-				Val:   4,
+			Left: &TreeNode{
+				Val: 4,
 			},
-			Right:&TreeNode{
-				Val:   5,
+			Right: &TreeNode{
+				Val: 5,
 			},
 		},
 		Right: &TreeNode{
@@ -75,7 +74,7 @@ func main() {
 // 迭代 先序
 func preorderTraversal(root *TreeNode) []int {
 	var (
-		res []int
+		res   []int
 		stack []*TreeNode
 	)
 
@@ -123,7 +122,7 @@ func preorderTraversal2(root *TreeNode) []int {
 // 迭代 中序
 func inorderTraversal(root *TreeNode) []int {
 	var (
-		res []int
+		res   []int
 		stack []*TreeNode
 	)
 
@@ -221,6 +220,7 @@ func postorderTraversal2(root *TreeNode) []int {
 func inorderTraversal3(root *TreeNode) []int {
 	return inorderdfs(root)
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 // 递归先序

@@ -33,29 +33,28 @@ func findKthLargest(nums []int, k int) int {
 
 //leetcode submit region end(Prohibit modification and deletion)
 func quickSort(nums []int, k int, left int, right int) int {
-		p := partition(nums, left, right)
-		if p == k {
-			return nums[p]
-		} else if p < k {
-			return quickSort(nums, k, p+1, right)
-		}
-		return quickSort(nums, k, left, p-1)
+	p := partition(nums, left, right)
+	if p == k {
+		return nums[p]
+	} else if p < k {
+		return quickSort(nums, k, p+1, right)
+	}
+	return quickSort(nums, k, left, p-1)
 }
 
-func partition(nums []int, left int, right int) int  {
+func partition(nums []int, left int, right int) int {
 	i, temp := left-1, nums[right]
 	// i指向比nums[right]小的最后一个元素
 	// j指向比nums[right]不小的最后一个元素
-	for j := left; j < right; j ++ {
+	for j := left; j < right; j++ {
 		if nums[j] <= temp {
 			i++
 			nums[i], nums[j] = nums[j], nums[i]
 		}
 	}
 	nums[i+1], nums[right] = nums[right], nums[i+1]
-	return i+1
+	return i + 1
 }
-
 
 // 快速排序方法, O(nlogn)
 func quickSort2(nums []int, k int, left int, right int) int {

@@ -36,8 +36,8 @@ import (
 //
 // Related Topics 排序 哈希表 双指针 二分查找
 func main() {
-	fmt.Printf("%#v\n", intersection([]int{1,2,2,1}, []int{2,2}))
-	fmt.Printf("%#v\n", intersection([]int{4,9,5}, []int{9,4,9,8,4}))
+	fmt.Printf("%#v\n", intersection([]int{1, 2, 2, 1}, []int{2, 2}))
+	fmt.Printf("%#v\n", intersection([]int{4, 9, 5}, []int{9, 4, 9, 8, 4}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -59,14 +59,13 @@ func intersection(nums1 []int, nums2 []int) []int {
 			i++
 			j++
 		} else if nums1[i] < nums2[j] {
-			i ++
+			i++
 		} else {
-			j ++
+			j++
 		}
 	}
 	return res
 }
-
 
 // 哈希
 func intersection2(nums1 []int, nums2 []int) []int {
@@ -89,4 +88,5 @@ func intersection2(nums1 []int, nums2 []int) []int {
 
 	return res
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

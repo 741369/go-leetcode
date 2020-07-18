@@ -9,11 +9,11 @@ type ListNode struct {
 
 func main() {
 	list := &ListNode{
-		Val:1,
+		Val: 1,
 		Next: &ListNode{
-			Val:2,
-			Next:&ListNode{
-				Val:3,
+			Val: 2,
+			Next: &ListNode{
+				Val:  3,
 				Next: nil,
 			},
 		},

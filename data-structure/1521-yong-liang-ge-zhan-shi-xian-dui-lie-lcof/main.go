@@ -55,7 +55,7 @@ func Constructor() CQueue {
 }
 
 // 入栈
-func (this *CQueue) AppendTail(value int)  {
+func (this *CQueue) AppendTail(value int) {
 	this.stack1.PushBack(value)
 }
 
@@ -73,7 +73,6 @@ func (this *CQueue) DeleteHead() int {
 	}
 	return -1
 }
-
 
 /**
  * Your CQueue object will be instantiated and called as such:

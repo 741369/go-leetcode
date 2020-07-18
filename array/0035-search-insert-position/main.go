@@ -42,27 +42,28 @@ func main() {
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func searchInsert2(nums []int, target int) int {
-    for i := 0; i < len(nums); i ++ {
-        if nums[i] >= target {
-            return i
-        }
-    }
-    return len(nums)
+	for i := 0; i < len(nums); i++ {
+		if nums[i] >= target {
+			return i
+		}
+	}
+	return len(nums)
 }
 
 // 二分查找
 func searchInsert(nums []int, target int) int {
 	res := len(nums)
-	i, j := 0, res - 1
+	i, j := 0, res-1
 	for i <= j {
 		mid := (i + j) / 2
 		if nums[mid] >= target {
 			res = mid
-			j = mid-1
+			j = mid - 1
 		} else {
-			i = mid+1
+			i = mid + 1
 		}
 	}
 	return res
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

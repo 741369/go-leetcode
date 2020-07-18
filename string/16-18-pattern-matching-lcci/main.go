@@ -64,9 +64,9 @@ func patternMatching(pattern string, value string) bool {
 		return false
 	}
 
-	for lenA := 0; countA * lenA <= len(value); lenA++ {
-		rest := len(value) - countA * lenA
-		if (countB == 0 && rest == 0) || (countB != 0 && rest % countB == 0) {
+	for lenA := 0; countA*lenA <= len(value); lenA++ {
+		rest := len(value) - countA*lenA
+		if (countB == 0 && rest == 0) || (countB != 0 && rest%countB == 0) {
 			var lenB int
 			if countB == 0 {
 				lenB = 0
@@ -77,7 +77,7 @@ func patternMatching(pattern string, value string) bool {
 			var valueA, valueB string
 			for i := 0; i < len(pattern); i++ {
 				if pattern[i] == 'a' {
-					sub := value[pos:pos+lenA]
+					sub := value[pos : pos+lenA]
 					if len(valueA) == 0 {
 						valueA = sub
 					} else if valueA != sub {
@@ -86,7 +86,7 @@ func patternMatching(pattern string, value string) bool {
 					}
 					pos += lenA
 				} else {
-					sub := value[pos:pos+lenB]
+					sub := value[pos : pos+lenB]
 					if len(valueB) == 0 {
 						valueB = sub
 					} else if valueB != sub {
@@ -106,46 +106,45 @@ func patternMatching(pattern string, value string) bool {
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func patternMatching2(pattern string, value string) bool {
-	if len(pattern) ==0{
-		if value == ""{
+	if len(pattern) == 0 {
+		if value == "" {
 			return true
 		}
 		return false
 	}
-	if value == ""{
-		if strings.Contains(pattern,"a") && strings.Contains(pattern,"b"){
+	if value == "" {
+		if strings.Contains(pattern, "a") && strings.Contains(pattern, "b") {
 			return false
 		}
-		return  true
+		return true
 	}
 
-	first_letter_num :=0
-	for i,_  :=range pattern{
-		if pattern[i] == pattern[0]{
+	first_letter_num := 0
+	for i, _ := range pattern {
+		if pattern[i] == pattern[0] {
 			first_letter_num++
-		}else {
+		} else {
 			break
 		}
 	}
 
 	first_letter_total_num := 0
 	seconde_letter_total_num := 0
-	for i,_  :=range pattern{
-		if pattern[i] == pattern[0]{
+	for i, _ := range pattern {
+		if pattern[i] == pattern[0] {
 			first_letter_total_num++
-		}else {
+		} else {
 			seconde_letter_total_num++
 		}
 	}
 
-	for i := 0;i <= len(value);i++ {
+	for i := 0; i <= len(value); i++ {
 		a := value[:i]
 
+		for j := first_letter_num * i; j <= len(value); j++ {
+			b := value[first_letter_num*i : j]
 
-		for j := first_letter_num*i; j <= len(value); j++ {
-			b := value[first_letter_num*i:j]
-
-			if len(value) != first_letter_total_num * len(a) + seconde_letter_total_num * len(b){
+			if len(value) != first_letter_total_num*len(a)+seconde_letter_total_num*len(b) {
 				continue
 			}
 
@@ -153,13 +152,13 @@ func patternMatching2(pattern string, value string) bool {
 
 			var temp_str string
 
-			for i,_ := range pattern{
-				if pattern[i] == pattern[0]{
+			for i, _ := range pattern {
+				if pattern[i] == pattern[0] {
 					temp_str += a
-				}else{
+				} else {
 					temp_str += b
 				}
-				if value[:len(temp_str)] != temp_str{
+				if value[:len(temp_str)] != temp_str {
 					continue
 				}
 			}
@@ -170,4 +169,5 @@ func patternMatching2(pattern string, value string) bool {
 	}
 	return false
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

@@ -26,7 +26,6 @@ import "fmt"
 //
 // Related Topics 树 深度优先搜索
 
-
 func main() {
 	node := sortedArrayToBST([]int{-10, -3, 0, 5, 9})
 	printTree(node)
@@ -50,24 +49,25 @@ func printTree(node *TreeNode) {
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
 func sortedArrayToBST(nums []int) *TreeNode {
 	return dfs(nums, 0, len(nums)-1)
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 func dfs(nums []int, left, right int) *TreeNode {
 	if left > right {
 		return nil
 	}
-	mid := (right + left) /2
+	mid := (right + left) / 2
 	return &TreeNode{
 		Val:   nums[mid],
-		Left:  dfs(nums, left, mid - 1),
+		Left:  dfs(nums, left, mid-1),
 		Right: dfs(nums, mid+1, right),
 	}
 }

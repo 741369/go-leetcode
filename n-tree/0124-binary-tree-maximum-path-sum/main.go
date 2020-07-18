@@ -58,31 +58,31 @@ import (
  */
 func main() {
 	root := &TreeNode{
-		Val:   -1,
-		Left:  &TreeNode{
-			Val:-2,
-			Left:&TreeNode{Val:4},
-			Right:&TreeNode{
+		Val: -1,
+		Left: &TreeNode{
+			Val:  -2,
+			Left: &TreeNode{Val: 4},
+			Right: &TreeNode{
 				Val:   6,
-				Right: &TreeNode{Val:7},
+				Right: &TreeNode{Val: 7},
 			},
 		},
 		Right: &TreeNode{
-			Val:   3,
+			Val: 3,
 		},
 	}
 	fmt.Println(maxPathSum(root))
 }
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
 func maxPathSum(root *TreeNode) int {
 	maxVal := math.MinInt64
-	var maxGain func (node *TreeNode) int
+	var maxGain func(node *TreeNode) int
 
 	maxGain = func(node *TreeNode) int {
 		if node == nil {
@@ -104,6 +104,7 @@ func maxPathSum(root *TreeNode) int {
 	maxGain(root)
 	return maxVal
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 func max(i, j int) int {

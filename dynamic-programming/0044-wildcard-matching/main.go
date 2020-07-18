@@ -5,6 +5,7 @@
 ***********************************************/
 
 package main
+
 //给定一个字符串 (s) 和一个字符模式 (p) ，实现一个支持 '?' 和 '*' 的通配符匹配。
 //
 // '?' 可以匹配任何单个字符。
@@ -83,11 +84,11 @@ func isMatch(s string, p string) bool {
 	m, n := len(s), len(p)
 	dp := make([][]bool, m+1)
 	// 初始化存储，避免多次比较
-	for i := 0; i <= m; i ++ {
+	for i := 0; i <= m; i++ {
 		dp[i] = make([]bool, n+1)
 	}
 	dp[0][0] = true
-	for j := 1; j <= n; j ++ {
+	for j := 1; j <= n; j++ {
 		if p[j-1] == '*' {
 			dp[0][j] = true
 		} else {
@@ -95,8 +96,8 @@ func isMatch(s string, p string) bool {
 		}
 	}
 
-	for i := 1; i <= m; i ++ {
-		for j := 1; j <= n; j ++ {
+	for i := 1; i <= m; i++ {
+		for j := 1; j <= n; j++ {
 			if p[j-1] == '?' || s[i-1] == p[j-1] {
 				dp[i][j] = dp[i-1][j-1]
 			} else if p[j-1] == '*' {
@@ -106,6 +107,5 @@ func isMatch(s string, p string) bool {
 	}
 	return dp[m][n]
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
-
-

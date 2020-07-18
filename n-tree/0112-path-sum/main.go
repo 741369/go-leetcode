@@ -7,6 +7,7 @@
 package main
 
 import "fmt"
+
 //给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。
 //
 // 说明: 叶子节点是指没有子节点的节点。
@@ -25,7 +26,6 @@ import "fmt"
 //
 // 返回 true, 因为存在目标和为 22 的根节点到叶子节点的路径 5->4->11->2。
 // Related Topics 树 深度优先搜索
-
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -57,15 +57,16 @@ func hasPathSum(root *TreeNode, sum int) bool {
 		}
 		if now.Left != nil {
 			queue = append(queue, now.Left)
-			queueVal = append(queueVal, now.Left.Val + tmp)
+			queueVal = append(queueVal, now.Left.Val+tmp)
 		}
 		if now.Right != nil {
 			queue = append(queue, now.Right)
-			queueVal = append(queueVal, now.Right.Val + tmp)
+			queueVal = append(queueVal, now.Right.Val+tmp)
 		}
 	}
 	return false
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 /**
@@ -77,31 +78,31 @@ func hasPathSum(root *TreeNode, sum int) bool {
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
 func main() {
 	root := &TreeNode{
-		Val:   5,
-		Left:  &TreeNode{
-			Val:4,
-			Left:&TreeNode{
+		Val: 5,
+		Left: &TreeNode{
+			Val: 4,
+			Left: &TreeNode{
 				Val:   11,
-				Left:  &TreeNode{Val:7},
-				Right: &TreeNode{Val:2},
+				Left:  &TreeNode{Val: 7},
+				Right: &TreeNode{Val: 2},
 			},
 		},
 		Right: &TreeNode{
-			Val:   8,
-			Left:  &TreeNode{
-				Val:   13,
+			Val: 8,
+			Left: &TreeNode{
+				Val: 13,
 			},
 			Right: &TreeNode{
 				Val:   4,
 				Left:  nil,
-				Right: &TreeNode{Val:1},
+				Right: &TreeNode{Val: 1},
 			},
 		},
 	}

@@ -1,5 +1,5 @@
 /**********************************************
-** @Des: 
+** @Des:
 ** @Author: 1@lg1024.com
 ** @Last Modified time: 2020/3/3 上午11:52
 ***********************************************/
@@ -8,12 +8,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/json-iterator/go/extra"
 	"github.com/json-iterator/go"
+	"github.com/json-iterator/go/extra"
 )
 
 type ResponseModel struct {
-	Ret  int `json:"ret"`
+	Ret  int    `json:"ret"`
 	Msg  string `json:"msg"`
 	Data VerifyResponseModel
 }

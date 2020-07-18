@@ -40,8 +40,8 @@ import (
 //
 // Related Topics 排序 哈希表 双指针 二分查找
 func main() {
-	fmt.Printf("%#v\n", intersect([]int{1,2,2,1}, []int{2,2}))
-	fmt.Printf("%#v\n", intersect([]int{4,9,5}, []int{9,4,9,8,4}))
+	fmt.Printf("%#v\n", intersect([]int{1, 2, 2, 1}, []int{2, 2}))
+	fmt.Printf("%#v\n", intersect([]int{4, 9, 5}, []int{9, 4, 9, 8, 4}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -55,18 +55,17 @@ func intersect(nums1 []int, nums2 []int) []int {
 	for i < len(nums1) && j < len(nums2) {
 		if nums1[i] == nums2[j] {
 			res = append(res, nums1[i])
-			i ++
-			j ++
+			i++
+			j++
 		} else if nums1[i] < nums2[j] {
-			i ++
+			i++
 		} else {
-			j ++
+			j++
 		}
 	}
 
 	return res
 }
-
 
 // 哈希法
 func intersect2(nums1 []int, nums2 []int) []int {
@@ -78,16 +77,17 @@ func intersect2(nums1 []int, nums2 []int) []int {
 	m := make(map[int]int)
 
 	for _, v := range nums1 {
-		m[v] ++
+		m[v]++
 	}
 
 	for _, v := range nums2 {
 		if m[v] > 0 {
 			res = append(res, v)
-			m[v] --
+			m[v]--
 		}
 	}
 
 	return res
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

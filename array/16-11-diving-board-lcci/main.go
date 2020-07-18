@@ -25,7 +25,7 @@ import "fmt"
 //
 // Related Topics 递归 记忆化
 func main() {
-	fmt.Printf("%#v", divingBoard(1,2,3))
+	fmt.Printf("%#v", divingBoard(1, 2, 3))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -34,13 +34,13 @@ func divingBoard(shorter int, longer int, k int) []int {
 		return nil
 	}
 	if shorter == longer {
-		return []int{ k * shorter}
+		return []int{k * shorter}
 	}
-	res := make([]int, k + 1)
-	for i := 0; i <= k; i ++ {
-		res[i] = shorter * (k - i) + longer * i
+	res := make([]int, k+1)
+	for i := 0; i <= k; i++ {
+		res[i] = shorter*(k-i) + longer*i
 	}
 	return res
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

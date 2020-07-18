@@ -7,8 +7,8 @@
 package main
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -18,7 +18,7 @@ type BST struct {
 
 // 插入
 func (bst *BST) Insert(val int) {
-	newNode := &TreeNode{Val:val}
+	newNode := &TreeNode{Val: val}
 
 	if bst.root == nil {
 		bst.root = newNode
@@ -135,13 +135,14 @@ func min(root *TreeNode) (int, bool) {
 		n = n.Left
 	}
 }
+
 // Max 二叉树最大值
 func (bst *BST) Max() (int, bool) {
 	return max(bst.root)
 }
 func max(root *TreeNode) (int, bool) {
 	if root == nil {
-		return  0, false
+		return 0, false
 	}
 	// 从右边找
 	n := root

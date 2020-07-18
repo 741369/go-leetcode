@@ -33,7 +33,7 @@ package main
 //
 // Related Topics 记忆化 字符串
 func main() {
-	println(respace([]string{"looked","just","like","her","brother"}, "jesslookedjustliketimherbrother"))
+	println(respace([]string{"looked", "just", "like", "her", "brother"}, "jesslookedjustliketimherbrother"))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -43,7 +43,7 @@ func respace(dictionary []string, sentence string) int {
 	for _, word := range dictionary {
 		root.insert(word)
 	}
-	dp := make([]int, n + 1)
+	dp := make([]int, n+1)
 	for i := 1; i < len(dp); i++ {
 		dp[i] = inf
 	}
@@ -65,14 +65,15 @@ func respace(dictionary []string, sentence string) int {
 	}
 	return dp[n]
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 type Trie struct {
-	next [26]*Trie
+	next  [26]*Trie
 	isEnd bool
 }
 
-func (this *Trie) insert(s string)  {
+func (this *Trie) insert(s string) {
 	curPos := this
 	for i := len(s) - 1; i >= 0; i-- {
 		t := int(s[i] - 'a')

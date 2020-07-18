@@ -1,5 +1,5 @@
 /**********************************************
-** @Des: 
+** @Des:
 ** @Author: 1@lg1024.com
 ** @Last Modified time: 2020/3/2 下午10:06
 ***********************************************/
@@ -17,8 +17,8 @@ import "fmt"
  */
 
 type ListNode struct {
- 	Val int
- 	Next *ListNode
+	Val  int
+	Next *ListNode
 }
 
 // 递归
@@ -44,7 +44,7 @@ func reverseList(head *ListNode) *ListNode {
 }
 
 func reverseList2(head *ListNode) *ListNode {
-	var pre  *ListNode = nil
+	var pre *ListNode = nil
 
 	for head != nil {
 		next := head.Next
@@ -60,7 +60,7 @@ func main() {
 	tempList := ListNode{
 		Val: 1,
 		Next: &ListNode{
-			Val: 2,
+			Val:  2,
 			Next: nil,
 		},
 	}
@@ -69,6 +69,7 @@ func main() {
 	fmt.Printf("%#v", revList)
 
 }
+
 /**
      * 迭代方法
      * 1 -> 2 -> 3 -> 4 -> null
@@ -90,4 +91,4 @@ return prev;
 }
 
 Line 55: Char 37: cannot use param_1 (type *leetcode.ListNode) as type *ListNode in argument to __helper__ (solution.go)
- */
+*/

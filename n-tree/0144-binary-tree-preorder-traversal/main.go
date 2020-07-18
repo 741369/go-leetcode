@@ -5,6 +5,7 @@
 ***********************************************/
 
 package main
+
 //给定一个二叉树，返回它的 前序 遍历。
 //
 // 示例:
@@ -22,7 +23,6 @@ package main
 // 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
 // Related Topics 栈 树
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -33,14 +33,15 @@ package main
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
+
 // 迭代 先序
 func preorderTraversal(root *TreeNode) []int {
 	var (
-		res []int
+		res   []int
 		stack []*TreeNode
 	)
 

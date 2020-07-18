@@ -50,9 +50,9 @@ func wordBreak(s string, wordDict []string) bool {
 	}
 	dp := make([]bool, len(s)+1)
 	dp[0] = true
-	for i := 1; i <= len(s); i ++ {
+	for i := 1; i <= len(s); i++ {
 		// 判断 j : i 元素是否是数组的元素
-		for j := 0; j < i; j ++ {
+		for j := 0; j < i; j++ {
 			if dp[j] && wordMap[s[j:i]] {
 				dp[i] = true
 				break
@@ -61,4 +61,5 @@ func wordBreak(s string, wordDict []string) bool {
 	}
 	return dp[len(s)]
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

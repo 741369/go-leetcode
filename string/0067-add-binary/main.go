@@ -52,13 +52,13 @@ func addBinary(a string, b string) string {
 		if bL >= 0 {
 			tmp += int(b[bL] - '0')
 		}
-		res = strconv.Itoa(tmp % 2) + res
+		res = strconv.Itoa(tmp%2) + res
 		plus = tmp / 2
 
 		//fmt.Println("=======", a[aL] - '0', "==", b[bL] - '0', "===", tmp % 2, "==", tmp / 2, "==", strconv.Itoa(tmp % 2), "==", res)
 
-		aL --
-		bL --
+		aL--
+		bL--
 	}
 	if aL >= 0 {
 		res = a[:aL+1] + res
@@ -68,4 +68,5 @@ func addBinary(a string, b string) string {
 	}
 	return res
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

@@ -34,8 +34,8 @@ import (
 //
 // Related Topics 数组 双指针
 func main() {
-	fmt.Println("========", threeSumClosest([]int{-1,2,1,-4}, 1))
-	fmt.Println("========", threeSumClosest([]int{1,1,1,0}, -100))
+	fmt.Println("========", threeSumClosest([]int{-1, 2, 1, -4}, 1))
+	fmt.Println("========", threeSumClosest([]int{1, 1, 1, 0}, -100))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -44,17 +44,17 @@ func threeSumClosest(nums []int, target int) int {
 	if len(nums) < 3 {
 		return 0
 	}
-	lenNums := len(nums)-1
-	quickSort(nums, 0, len(nums) - 1)
+	lenNums := len(nums) - 1
+	quickSort(nums, 0, len(nums)-1)
 	tmp, sum := math.MaxInt64, 0
 
-	for k := 0; k < lenNums - 1; k ++ {
+	for k := 0; k < lenNums-1; k++ {
 		if k > 0 && nums[k] == nums[k-1] {
 			continue
 		}
 		i, j := k+1, lenNums
 		for i < j {
-			min, flag:= minDiff(target, nums[k] + nums[i] + nums[j])
+			min, flag := minDiff(target, nums[k]+nums[i]+nums[j])
 			if min == 0 {
 				return nums[k] + nums[i] + nums[j]
 			} else if min < tmp {
@@ -62,18 +62,19 @@ func threeSumClosest(nums []int, target int) int {
 				sum = nums[k] + nums[i] + nums[j]
 			}
 			if flag {
-				i ++
-			} else  {
-				j --
+				i++
+			} else {
+				j--
 			}
 		}
 	}
 	return sum
 }
+
 // 绝对值
 func minDiff(i, j int) (int, bool) {
 	if i > j {
-		return i-j, true
+		return i - j, true
 	}
 	return j - i, false
 }
@@ -83,7 +84,7 @@ func minDiff(i, j int) (int, bool) {
 func quickSort(nums []int, left int, right int) {
 	if left < right {
 		p := partition(nums, left, right)
-		quickSort(nums, left, p -1)
+		quickSort(nums, left, p-1)
 		quickSort(nums, p+1, right)
 	}
 }
@@ -92,11 +93,11 @@ func quickSort(nums []int, left int, right int) {
 func partition(nums []int, left int, right int) int {
 	pas, i, j := nums[left], left, right
 	for i < j {
-		for i < j &&  pas < nums[j] {
-			j --
+		for i < j && pas < nums[j] {
+			j--
 		}
 		for i < j && nums[i] <= pas { // 加上等于可以减少交换次数
-			i ++
+			i++
 		}
 		if i < j {
 			nums[i], nums[j] = nums[j], nums[i]
@@ -104,7 +105,5 @@ func partition(nums []int, left int, right int) int {
 	}
 	nums[i], nums[left] = nums[left], nums[i]
 	return i
-
-
 
 }

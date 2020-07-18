@@ -44,16 +44,16 @@ import "fmt"
 //
 // Related Topics 贪心算法 数组
 func main() {
-	fmt.Println("=======", maxProfit([]int{7,1,5,3,6,4}))
-	fmt.Println("=======", maxProfit([]int{1,2,3,4,5}))
-	fmt.Println("=======", maxProfit([]int{7,6,4,3,1}))
+	fmt.Println("=======", maxProfit([]int{7, 1, 5, 3, 6, 4}))
+	fmt.Println("=======", maxProfit([]int{1, 2, 3, 4, 5}))
+	fmt.Println("=======", maxProfit([]int{7, 6, 4, 3, 1}))
 	fmt.Println("=======", maxProfit([]int{3, 3}))
 }
 
 func maxProfit(prices []int) int {
 	max := 0
-	for i := 1; i < len(prices); i ++ {
-		if prices[i] > prices[i - 1] {
+	for i := 1; i < len(prices); i++ {
+		if prices[i] > prices[i-1] {
 			max += prices[i] - prices[i-1]
 		}
 	}
@@ -69,13 +69,13 @@ func maxProfit2(prices []int) int {
 
 	// 求 连续的波谷，波峰
 	i, valley, peak, max := 0, 0, 0, 0
-	for i < len(prices) - 1 {
-		for i < len(prices) - 1 && prices[i] >= prices[i+1] {
-			i ++
+	for i < len(prices)-1 {
+		for i < len(prices)-1 && prices[i] >= prices[i+1] {
+			i++
 		}
 		valley = prices[i]
-		for i < len(prices) - 1 && prices[i] <= prices[i+1] {
-			i ++
+		for i < len(prices)-1 && prices[i] <= prices[i+1] {
+			i++
 		}
 		peak = prices[i]
 		max += peak - valley
@@ -83,4 +83,5 @@ func maxProfit2(prices []int) int {
 
 	return max
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

@@ -36,7 +36,6 @@ import "fmt"
 // 如果不得使用临时缓冲区，该怎么解决？
 // Related Topics 链表
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
@@ -46,21 +45,21 @@ import "fmt"
  * }
  */
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
 func main() {
 	node := &ListNode{
-		Val:  1,
+		Val: 1,
 		Next: &ListNode{
-			Val:  2,
+			Val: 2,
 			Next: &ListNode{
-				Val:  3,
+				Val: 3,
 				Next: &ListNode{
-					Val:  3,
+					Val: 3,
 					Next: &ListNode{
-						Val:  2,
+						Val: 2,
 						Next: &ListNode{
 							Val:  1,
 							Next: nil,
@@ -120,7 +119,6 @@ func removeDuplicateNodes3(head *ListNode) *ListNode {
 
 	return head
 }
-
 
 //leetcode submit region end(Prohibit modification and deletion)
 func removeDuplicateNodes2(head *ListNode) *ListNode {

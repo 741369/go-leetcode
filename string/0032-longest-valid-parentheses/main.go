@@ -5,6 +5,7 @@
 ***********************************************/
 
 package main
+
 //给定一个只包含 '(' 和 ')' 的字符串，找出最长的包含有效括号的子串的长度。
 //
 // 示例 1:
@@ -22,7 +23,6 @@ package main
 //
 // Related Topics 字符串 动态规划
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 // 动态规划方案
 func longestValidParentheses(s string) int {
@@ -30,9 +30,9 @@ func longestValidParentheses(s string) int {
 	// 2. )) dp[i] = dp[i-1] + dp[i-dp[i-1]-2] + 2
 	var (
 		ans = 0
-		dp = make([]int, len(s))
+		dp  = make([]int, len(s))
 	)
-	for i := 1; i < len(s); i ++ {
+	for i := 1; i < len(s); i++ {
 		if s[i:i+1] == ")" {
 			// 形如 ()
 			if s[i-1:i] == "(" {
@@ -41,10 +41,10 @@ func longestValidParentheses(s string) int {
 				} else {
 					dp[i] = 2
 				}
-			// 形如 (())
-			} else if i - dp[i-1] > 0 && s[i-dp[i-1]-1:i-dp[i-1]] == "(" {
-				if i - dp[i-1] - 2 >= 0 {
-					dp[i] = dp[i-1] + dp[i-dp[i-1]-2] +2
+				// 形如 (())
+			} else if i-dp[i-1] > 0 && s[i-dp[i-1]-1:i-dp[i-1]] == "(" {
+				if i-dp[i-1]-2 >= 0 {
+					dp[i] = dp[i-1] + dp[i-dp[i-1]-2] + 2
 				} else {
 					dp[i] = dp[i-1] + 2
 				}
@@ -56,4 +56,5 @@ func longestValidParentheses(s string) int {
 	}
 	return ans
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

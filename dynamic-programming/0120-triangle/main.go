@@ -38,9 +38,9 @@ import (
 func main() {
 	fmt.Println(minimumTotal([][]int{
 		{2},
-		{3,4},
-		{6,5,7},
-		{4,1,8,3},
+		{3, 4},
+		{6, 5, 7},
+		{4, 1, 8, 3},
 	}))
 }
 
@@ -49,7 +49,7 @@ func minimumTotal(triangle [][]int) int {
 	n := len(triangle)
 	dp := make([][]int, 2)
 
-	for i := 0; i < 2 ; i ++ {
+	for i := 0; i < 2; i++ {
 		dp[i] = make([]int, n)
 	}
 	dp[0][0] = triangle[0][0]
@@ -58,7 +58,7 @@ func minimumTotal(triangle [][]int) int {
 		pre := 1 - cur
 		dp[cur][0] = dp[pre][0] + triangle[i][0]
 		for j := 1; j < i; j++ {
-			dp[cur][j] = min(dp[pre][j-1], dp[pre][j])+triangle[i][j]
+			dp[cur][j] = min(dp[pre][j-1], dp[pre][j]) + triangle[i][j]
 		}
 		dp[cur][i] = dp[pre][i-1] + triangle[i][i]
 	}
@@ -74,14 +74,14 @@ func minimumTotal2(triangle [][]int) int {
 	n := len(triangle)
 	dp := make([][]int, n)
 
-	for i := 0; i < n ; i ++ {
+	for i := 0; i < n; i++ {
 		dp[i] = make([]int, n)
 	}
 	dp[0][0] = triangle[0][0]
 	for i := 1; i < n; i++ {
 		dp[i][0] = dp[i-1][0] + triangle[i][0]
 		for j := 1; j < i; j++ {
-			dp[i][j] = min(dp[i-1][j-1], dp[i-1][j])+triangle[i][j]
+			dp[i][j] = min(dp[i-1][j-1], dp[i-1][j]) + triangle[i][j]
 		}
 		dp[i][i] = dp[i-1][i-1] + triangle[i][i]
 	}
@@ -92,6 +92,7 @@ func minimumTotal2(triangle [][]int) int {
 	}
 	return res
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 func min(i, j int) int {

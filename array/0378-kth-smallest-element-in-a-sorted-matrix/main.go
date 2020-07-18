@@ -35,7 +35,7 @@ import (
 // Related Topics 堆 二分查找
 func main() {
 	matrix := [][]int{
-		{1,  5,  9},
+		{1, 5, 9},
 		{10, 11, 13},
 		{12, 13, 15},
 	}
@@ -51,17 +51,18 @@ func kthSmallest(matrix [][]int, k int) int {
 		return 0
 	}
 	rows, columns := len(matrix), len(matrix[0])
-	sorted := make([]int, rows * columns)
+	sorted := make([]int, rows*columns)
 	index := 0
 	for _, row := range matrix {
 		for _, column := range row {
 			sorted[index] = column
-			index ++
+			index++
 		}
 	}
 	sort.Ints(sorted)
 	return sorted[k-1]
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 // https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/solution/you-xu-ju-zhen-zhong-di-kxiao-de-yuan-su-by-leetco/

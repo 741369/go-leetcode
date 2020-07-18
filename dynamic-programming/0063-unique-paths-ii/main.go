@@ -5,6 +5,7 @@
 ***********************************************/
 
 package main
+
 //一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
 //
 // 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
@@ -34,7 +35,7 @@ package main
 //
 // Related Topics 数组 动态规划
 func main() {
-	println(uniquePathsWithObstacles([][]int{{0,0,0},{0,1,0},{0,0,0}}))
+	println(uniquePathsWithObstacles([][]int{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -50,12 +51,12 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 				f[j] = 0
 				continue
 			}
-			if j - 1 >= 0 && obstacleGrid[i][j-1] == 0 {
+			if j-1 >= 0 && obstacleGrid[i][j-1] == 0 {
 				f[j] += f[j-1]
 			}
 		}
 	}
 	return f[len(f)-1]
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

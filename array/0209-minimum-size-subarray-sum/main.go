@@ -29,8 +29,8 @@ import "fmt"
 //
 // Related Topics 数组 双指针 二分查找
 func main() {
-	fmt.Println(minSubArrayLen(7, []int{2,3,1,2,4,3}))
-	fmt.Println(minSubArrayLen(4, []int{1,4,4}))
+	fmt.Println(minSubArrayLen(7, []int{2, 3, 1, 2, 4, 3}))
+	fmt.Println(minSubArrayLen(4, []int{1, 4, 4}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -42,21 +42,22 @@ func minSubArrayLen(s int, nums []int) int {
 		for sum >= s {
 			ans = min(ans, end-start+1)
 			sum -= nums[start]
-			start ++
+			start++
 		}
 		end++
 	}
-	if ans == len(nums) + 1{
+	if ans == len(nums)+1 {
 		return 0
 	}
 	return ans
 }
+
 // 暴力法
 func minSubArrayLen2(s int, nums []int) int {
 	ans := len(nums) + 1
-	for i := 0; i < len(nums); i ++ {
+	for i := 0; i < len(nums); i++ {
 		tmp := 0
-		for j := i; j < len(nums); j ++ {
+		for j := i; j < len(nums); j++ {
 			tmp += nums[j]
 			if tmp >= s {
 				ans = min(j-i+1, ans)
@@ -64,7 +65,7 @@ func minSubArrayLen2(s int, nums []int) int {
 			}
 		}
 	}
-	if ans == len(nums) + 1 {
+	if ans == len(nums)+1 {
 		return 0
 	}
 	return ans
@@ -75,5 +76,5 @@ func min(i, j int) int {
 	}
 	return i
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

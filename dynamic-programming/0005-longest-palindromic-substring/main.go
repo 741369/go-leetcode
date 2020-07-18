@@ -5,6 +5,7 @@
 ***********************************************/
 
 package main
+
 //给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
 //
 // 示例 1：
@@ -21,10 +22,9 @@ package main
 //
 // Related Topics 字符串 动态规划
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 func longestPalindrome(s string) string {
 
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

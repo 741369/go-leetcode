@@ -53,7 +53,6 @@ import "fmt"
 //
 // Related Topics 树 深度优先搜索
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -64,8 +63,8 @@ import "fmt"
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -89,17 +88,17 @@ func recoverFromPreorder(S string) *TreeNode {
 		// 先找当前几点所在层级
 		level := 0
 		for S[pos] == '-' {
-			pos ++
-			level ++
+			pos++
+			level++
 		}
 
 		// 获取当前节点的值
 		value := 0
-		for ;pos < len(S) && S[pos] >= '0' && S[pos] <= '9'; pos ++ {
-			value = value * 10 + int(S[pos] - '0')
+		for ; pos < len(S) && S[pos] >= '0' && S[pos] <= '9'; pos++ {
+			value = value*10 + int(S[pos]-'0')
 		}
 
-		tmp := &TreeNode{Val:value}
+		tmp := &TreeNode{Val: value}
 		// 判断当前节点是左子节点还是右子节点
 		if level == len(node) { // 判断节点是否为左子树
 			if len(node) > 0 {
@@ -114,5 +113,5 @@ func recoverFromPreorder(S string) *TreeNode {
 
 	return node[0]
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

@@ -44,7 +44,6 @@ import (
 //
 // Related Topics 树 深度优先搜索
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -55,8 +54,8 @@ import (
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -88,7 +87,6 @@ func isValidBST(root *TreeNode) bool {
 	return true
 }
 
-
 func isValidBST2(root *TreeNode) bool {
 	return dfs(root, math.MinInt64, math.MaxInt64)
 }
@@ -103,5 +101,5 @@ func dfs(root *TreeNode, min int, max int) bool {
 	}
 	return dfs(root.Left, min, root.Val) && dfs(root.Right, root.Val, max)
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

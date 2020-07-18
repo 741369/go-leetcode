@@ -37,7 +37,6 @@ package main
 // 你可以运用递归和迭代两种方法解决这个问题吗？
 // Related Topics 树 深度优先搜索 广度优先搜索
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -49,14 +48,15 @@ package main
  */
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
 func isSymmetric(root *TreeNode) bool {
 	return dfs(root, root)
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 func dfs(root1, root2 *TreeNode) bool {

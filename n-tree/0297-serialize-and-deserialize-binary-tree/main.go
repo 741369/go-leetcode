@@ -36,7 +36,6 @@ import (
 // 说明: 不要使用类的成员 / 全局 / 静态变量来存储状态，你的序列化和反序列化算法应该是无状态的。
 // Related Topics 树 设计
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -47,8 +46,8 @@ import (
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -95,7 +94,7 @@ func (this *Codec) reDeserialize() *TreeNode {
 	val, _ := strconv.Atoi(this.arr[0])
 	this.arr = this.arr[1:]
 	tmp := &TreeNode{
-		Val:   val,
+		Val: val,
 	}
 	tmp.Left = this.reDeserialize()
 	tmp.Right = this.reDeserialize()
@@ -104,13 +103,13 @@ func (this *Codec) reDeserialize() *TreeNode {
 
 func main() {
 	root := &TreeNode{
-		Val:   1,
-		Left:  &TreeNode{
-			Val:   2,
+		Val: 1,
+		Left: &TreeNode{
+			Val: 2,
 		},
 		Right: &TreeNode{
-			Val:   3,
-			Left:  &TreeNode{
+			Val: 3,
+			Left: &TreeNode{
 				Val:   4,
 				Left:  nil,
 				Right: nil,

@@ -55,7 +55,6 @@ package main
 //
 // Related Topics 树 深度优先搜索
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -66,12 +65,13 @@ package main
  * }
  */
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
-func recoverTree(root *TreeNode)  {
+func recoverTree(root *TreeNode) {
 
 }
+
 //leetcode submit region end(Prohibit modification and deletion)

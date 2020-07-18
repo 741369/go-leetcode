@@ -26,6 +26,7 @@ import "fmt"
 func main() {
 	fmt.Println(numTrees(3))
 }
+
 //leetcode submit region begin(Prohibit modification and deletion)
 func numTrees(n int) int {
 	// 动态规划
@@ -34,11 +35,12 @@ func numTrees(n int) int {
 	arr := make([]int, n+1)
 	arr[0] = 1 // 空树只有一种情况
 	arr[1] = 1 // 单节点树也只有一种情况
-	for i := 2; i <= n; i ++ {
-		for j := 1; j <= i ; j ++ {
-			arr[i] += arr[j-1]*arr[i-j]
+	for i := 2; i <= n; i++ {
+		for j := 1; j <= i; j++ {
+			arr[i] += arr[j-1] * arr[i-j]
 		}
 	}
 	return arr[n]
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
