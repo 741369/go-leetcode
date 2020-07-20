@@ -29,7 +29,7 @@ func main() {
 //leetcode submit region begin(Prohibit modification and deletion)
 func isInterleave(s1 string, s2 string, s3 string) bool {
 	n, m, t := len(s1), len(s2), len(s3)
-	if (n+m) != t {
+	if (n + m) != t {
 		return false
 	}
 	bp := make([][]bool, n+1)

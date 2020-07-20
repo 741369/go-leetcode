@@ -31,22 +31,22 @@ import "fmt"
 //
 // Related Topics 分治算法 动态规划
 func main() {
-	fmt.Println("===========", maxCoins([]int{3,1,5,8}))
+	fmt.Println("===========", maxCoins([]int{3, 1, 5, 8}))
 }
 
 func maxCoins3(nums []int) int {
 	n := len(nums)
-	rec := make([][]int, n + 2)
-	for i := 0; i < n + 2; i++ {
-		rec[i] = make([]int, n + 2)
+	rec := make([][]int, n+2)
+	for i := 0; i < n+2; i++ {
+		rec[i] = make([]int, n+2)
 	}
-	val := make([]int, n + 2)
+	val := make([]int, n+2)
 	val[0], val[n+1] = 1, 1
 	for i := 1; i <= n; i++ {
 		val[i] = nums[i-1]
 	}
 	for i := n - 1; i >= 0; i-- {
-		for j := i + 2; j <= n + 1; j++ {
+		for j := i + 2; j <= n+1; j++ {
 			for k := i + 1; k < j; k++ {
 				sum := val[i] * val[k] * val[j]
 				sum += rec[i][k] + rec[k][j]
@@ -60,14 +60,14 @@ func maxCoins3(nums []int) int {
 func maxCoins(nums []int) int {
 	n := len(nums)
 
-	val := make([]int, n + 2)
+	val := make([]int, n+2)
 	val[0], val[n+1] = 1, 1
-	for i := 1; i <= n; i ++ {
+	for i := 1; i <= n; i++ {
 		val[i] = nums[i-1]
 	}
 
 	dp := make([][]int, n+2)
-	for i := 0; i < len(dp); i ++ {
+	for i := 0; i < len(dp); i++ {
 		dp[i] = make([]int, n+2)
 	}
 
@@ -87,16 +87,16 @@ func maxCoins(nums []int) int {
 func maxCoins2(nums []int) int {
 	n := len(nums)
 	// 初始化
-	val := make([]int, n + 2)
-	for i := 1; i <= n; i ++ {
+	val := make([]int, n+2)
+	for i := 1; i <= n; i++ {
 		val[i] = nums[i-1]
 	}
 	val[0], val[n+1] = 1, 1
 
 	dp := make([][]int, n+2)
-	for i := 0; i < len(dp); i ++ {
+	for i := 0; i < len(dp); i++ {
 		dp[i] = make([]int, n+2)
-		for j := 0; j < len(dp[i]); j ++ {
+		for j := 0; j < len(dp[i]); j++ {
 			dp[i][j] = -1
 		}
 	}
@@ -112,13 +112,14 @@ func resolve(val []int, left, right int, dp [][]int) int {
 		return dp[left][right]
 	}
 
-	for i := left + 1; i < right; i ++ {
+	for i := left + 1; i < right; i++ {
 		sum := val[left] * val[i] * val[right]
 		sum += resolve(val, left, i, dp) + resolve(val, i, right, dp)
 		dp[left][right] = max(dp[left][right], sum)
 	}
 	return dp[left][right]
 }
+
 //leetcode submit region end(Prohibit modification and deletion)
 func max(i, j int) int {
 	if i > j {
