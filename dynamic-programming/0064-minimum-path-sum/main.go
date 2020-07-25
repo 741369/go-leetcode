@@ -25,7 +25,7 @@ import "fmt"
 //
 // Related Topics 数组 动态规划
 func main() {
-	fmt.Println(minPathSum([][]int{{1,3,1},{1,5,1},{4,2,1}}))
+	fmt.Println(minPathSum([][]int{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -40,17 +40,17 @@ func minPathSum(grid [][]int) int {
 	}
 	dp[0][0] = grid[0][0]
 	for i := 1; i < rows; i++ {
-		dp[i][0] = dp[i - 1][0] + grid[i][0]
+		dp[i][0] = dp[i-1][0] + grid[i][0]
 	}
 	for j := 1; j < columns; j++ {
-		dp[0][j] = dp[0][j - 1] + grid[0][j]
+		dp[0][j] = dp[0][j-1] + grid[0][j]
 	}
 	for i := 1; i < rows; i++ {
 		for j := 1; j < columns; j++ {
-			dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]
+			dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
 		}
 	}
-	return dp[rows - 1][columns - 1]
+	return dp[rows-1][columns-1]
 }
 
 func min(x, y int) int {
@@ -61,4 +61,3 @@ func min(x, y int) int {
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
-

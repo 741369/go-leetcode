@@ -1,4 +1,5 @@
 package main
+
 // 154. 寻找旋转排序数组中的最小值 II
 // 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
 
@@ -24,12 +25,13 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(findMin([]int{1,3,5}))
-	fmt.Println(findMin([]int{2,2,2,0,1}))
+	fmt.Println(findMin([]int{1, 3, 5}))
+	fmt.Println(findMin([]int{2, 2, 2, 0, 1}))
 }
+
 // 二分查找
 func findMin(nums []int) int {
-	left, right := 0, len(nums) - 1
+	left, right := 0, len(nums)-1
 	// 将mid和right比较有三种情况
 	// 1. mid < high 说明最小值在最左边
 	// 2. mid > high 说明最小值在最右边
@@ -41,7 +43,7 @@ func findMin(nums []int) int {
 		} else if nums[mid] > nums[right] {
 			left = mid + 1
 		} else {
-			right --
+			right--
 		}
 	}
 	return nums[left]
