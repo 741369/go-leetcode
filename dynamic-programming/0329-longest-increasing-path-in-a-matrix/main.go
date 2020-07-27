@@ -37,15 +37,15 @@ import "fmt"
 // Related Topics 深度优先搜索 拓扑排序 记忆化
 func main() {
 	fmt.Println(longestIncreasingPath([][]int{
-		{3,4,5},
-		{3,2,6},
-		{2,2,1},
+		{3, 4, 5},
+		{3, 2, 6},
+		{2, 2, 1},
 	}))
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
 var (
-	dirs = [][]int{[]int{-1, 0}, []int{1, 0}, []int{0, -1}, []int{0, 1}}
+	dirs          = [][]int{[]int{-1, 0}, []int{1, 0}, []int{0, -1}, []int{0, 1}}
 	rows, columns int
 )
 
@@ -73,9 +73,9 @@ func dfs(matrix [][]int, row, column int, memo [][]int) int {
 	}
 	memo[row][column]++
 	for _, dir := range dirs {
-		newRow, newColumn := row + dir[0], column + dir[1]
+		newRow, newColumn := row+dir[0], column+dir[1]
 		if newRow >= 0 && newRow < rows && newColumn >= 0 && newColumn < columns && matrix[newRow][newColumn] > matrix[row][column] {
-			memo[row][column] = max(memo[row][column], dfs(matrix, newRow, newColumn, memo) + 1)
+			memo[row][column] = max(memo[row][column], dfs(matrix, newRow, newColumn, memo)+1)
 		}
 	}
 	return memo[row][column]
@@ -89,4 +89,3 @@ func max(x, y int) int {
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
-

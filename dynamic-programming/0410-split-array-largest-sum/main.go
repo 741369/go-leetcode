@@ -38,8 +38,9 @@ import (
 //
 // Related Topics 二分查找 动态规划
 func main() {
-	fmt.Println(splitArray([]int{7,2,5,10,8}, 2))
+	fmt.Println(splitArray([]int{7, 2, 5, 10, 8}, 2))
 }
+
 //leetcode submit region begin(Prohibit modification and deletion)
 // 令 f[i][j]表示将数组的前 i 个数分割为 j 段所能得到的最大连续子数组和的最小值
 func splitArray(nums []int, m int) int {
