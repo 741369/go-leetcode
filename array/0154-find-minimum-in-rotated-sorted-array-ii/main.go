@@ -48,3 +48,11 @@ func findMin(nums []int) int {
 }
 
 // 直接遍历
+func findMin(nums []int) int {
+	for i := 0; i < len(nums)-1; i++{
+		if nums[i+1] < nums[i] {
+			return nums[i+1]
+		}
+	}
+	return nums[0]
+}
