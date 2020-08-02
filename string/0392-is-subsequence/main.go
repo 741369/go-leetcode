@@ -51,9 +51,8 @@ func isSubsequence(s string, t string) bool {
 		}
 		j++
 	}
-	return i==n
+	return i == n
 }
-
 
 func isSubsequence2(s string, t string) bool {
 	if len(s) == 0 {

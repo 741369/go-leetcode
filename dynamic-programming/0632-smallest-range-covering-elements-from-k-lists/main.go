@@ -36,10 +36,9 @@ import (
 //
 // Related Topics 哈希表 双指针 字符串
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 var (
-	next []int
+	next  []int
 	numsC [][]int
 )
 

@@ -32,8 +32,8 @@ import "fmt"
 //
 // Related Topics 数组 二分查找
 func main() {
-	fmt.Println(findMagicIndex([]int{0,2,3,4,5}))
-	fmt.Println(findMagicIndex([]int{1,1,1}))
+	fmt.Println(findMagicIndex([]int{0, 2, 3, 4, 5}))
+	fmt.Println(findMagicIndex([]int{1, 1, 1}))
 }
 
 func findMagicIndex(nums []int) int {
@@ -45,13 +45,13 @@ func getAnswer(nums []int, left, right int) int {
 		return -1
 	}
 	mid := (right + left) / 2
-	leftAnswer := getAnswer(nums, left, mid - 1)
+	leftAnswer := getAnswer(nums, left, mid-1)
 	if leftAnswer != -1 {
 		return leftAnswer
 	} else if mid == nums[mid] {
 		return mid
 	}
-	return getAnswer(nums, mid + 1, right)
+	return getAnswer(nums, mid+1, right)
 }
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -63,5 +63,5 @@ func findMagicIndex2(nums []int) int {
 	}
 	return -1
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

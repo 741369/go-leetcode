@@ -34,10 +34,10 @@ func integerBreak(n int) int {
 	// dp[i] = max(j * (i-j), j * dp[i-j])
 	dp := make([]int, n+1)
 	dp[0], dp[1] = 0, 0
-	for i := 2; i <= n; i ++ {
+	for i := 2; i <= n; i++ {
 		tmp := 0
-		for j := 1; j < i; j ++ {
-			tmp = max(tmp, max(j * (i - j), j * dp[i-j]))
+		for j := 1; j < i; j++ {
+			tmp = max(tmp, max(j*(i-j), j*dp[i-j]))
 		}
 		dp[i] = tmp
 	}
@@ -45,9 +45,9 @@ func integerBreak(n int) int {
 }
 func max(i, j int) int {
 	if i > j {
-		 return i
+		return i
 	}
 	return j
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)

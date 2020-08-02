@@ -22,8 +22,8 @@ func main() {
 }
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -35,43 +35,43 @@ type TreeNode struct {
  *     Right *TreeNode
  * }
  */
- //   迭代，棧
- func maxDepth(root *TreeNode) int {
-    if root == nil {
-        return 0
-    }
-    queue := []*TreeNode{root}
-    ans := 0
-    for len(queue) > 0 {
-        sz := len(queue)
-        for sz > 0 {
-            tmp := queue[0]
-            queue = queue[1:]
-            if tmp.Left != nil {
-                queue = append(queue, tmp.Left)
-            }
-            if tmp.Right != nil {
-                queue = append(queue, tmp.Right)
-            }
-            sz --
-        }
-        ans ++
-    }
+//   迭代，棧
+func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	queue := []*TreeNode{root}
+	ans := 0
+	for len(queue) > 0 {
+		sz := len(queue)
+		for sz > 0 {
+			tmp := queue[0]
+			queue = queue[1:]
+			if tmp.Left != nil {
+				queue = append(queue, tmp.Left)
+			}
+			if tmp.Right != nil {
+				queue = append(queue, tmp.Right)
+			}
+			sz--
+		}
+		ans++
+	}
 
-    return ans
+	return ans
 }
 
 // 递归
 func maxDepth2(root *TreeNode) int {
-    if root == nil {
-        return 0
-    }
-    return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
+	if root == nil {
+		return 0
+	}
+	return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
 }
 
 func max(i, j int) int {
-    if i > j {
-        return i
-    }
-    return j
+	if i > j {
+		return i
+	}
+	return j
 }

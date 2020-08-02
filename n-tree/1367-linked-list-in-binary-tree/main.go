@@ -5,6 +5,7 @@
 ***********************************************/
 
 package main
+
 //给你一棵以 root 为根的二叉树和一个 head 为第一个节点的链表。
 //
 // 如果在二叉树中，存在一条一直向下的路径，且每个点的数值恰好一一对应以 head 为首的链表中每个节点的值，那么请你返回 True ，否则返回 False
@@ -52,7 +53,6 @@ package main
 //
 // Related Topics 树 链表 动态规划
 
-
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
@@ -70,13 +70,13 @@ package main
  * }
  */
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
 type TreeNode struct {
-	Val int
-	Left *TreeNode
+	Val   int
+	Left  *TreeNode
 	Right *TreeNode
 }
 
@@ -99,5 +99,5 @@ func dfs(root *TreeNode, head *ListNode) bool {
 	}
 	return dfs(root.Left, head.Next) || dfs(root.Right, head.Next)
 }
-//leetcode submit region end(Prohibit modification and deletion)
 
+//leetcode submit region end(Prohibit modification and deletion)
