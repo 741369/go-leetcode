@@ -22,10 +22,13 @@ func main() {
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func restoreIpAddresses(s string) []string {
+	// 判断边界条件
 	if len(s) < 4 || len(s) > 12 {
 		return []string{}
 	}
+
 	var result []string
+	// 1. 第一个小数点后，最多3位，并且保证后面最少有3位，
 	for i := 1; i < 4 && i < len(s)-2; i++ {
 		for j := i + 1; j < i+4 && j < len(s)-1; j++ {
 			for k := j + 1; k < j+4 && k < len(s); k++ {
@@ -40,9 +43,13 @@ func restoreIpAddresses(s string) []string {
 
 // 判断数字是否为ip地址数字1-255
 func judgeNumber(s string) bool {
+
+	// 第一位不能是0，也排除了数字0
 	if len(s) > 1 && s[0] == '0' {
 		return false
 	}
+
+	// 数字大小范围为1, 255
 	result := 0
 	for i := 0; i < len(s); i++ {
 		result = result*10 + int(s[i]-'0')
