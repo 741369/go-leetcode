@@ -68,7 +68,7 @@ func main() {
 			},
 		},
 	}
-	node := sortedListToBST(head)
+	node := sortedListToBST2(head)
 	dfs(node)
 }
 
@@ -128,3 +128,31 @@ func middleNodeAndPreNode(head *ListNode) (middle *ListNode, pre *ListNode) {
 
 //leetcode submit region end(Prohibit modification and deletion)
 
+// 方法2 分治
+// 在找出了中位数节点之后，我们将其作为当前根节点的元素，并递归地构造其左侧部分的链表对应的左子树，以及右侧部分的链表对应的右子树。
+func sortedListToBST2(head *ListNode) *TreeNode {
+	return buildTree(head, nil)
+}
+
+func buildTree(left, right *ListNode) *TreeNode {
+	if left == right {
+		return nil
+	}
+
+	mid := getMedian(left, right)
+	root := &TreeNode{
+		Val:   mid.Val,
+		Left:  buildTree(left, mid),
+		Right: buildTree(mid.Next, right),
+	}
+	return root
+}
+
+func getMedian(left, right *ListNode) *ListNode {
+	fast, slow := left, left
+	for fast != right && fast.Next != right {
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+	return slow
+}
