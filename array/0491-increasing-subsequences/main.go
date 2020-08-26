@@ -5,6 +5,9 @@
 ***********************************************/
 
 package main
+
+import "math"
+
 //给定一个整型数组, 你的任务是找到所有该数组的递增子序列，递增子序列的长度至少是2。
 //
 // 示例:
@@ -76,4 +79,34 @@ func check() bool {
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
+
+var (
+	temp2 []int
+	ans [][]int
+)
+
+func findSubsequences2(nums []int) [][]int {
+	ans = [][]int{}
+	dfs(0, math.MinInt32, nums)
+	return ans
+}
+
+func dfs(cur, last int, nums []int) {
+	if cur == len(nums) {
+		if len(temp2) >= 2 {
+			t := make([]int, len(temp2))
+			copy(t, temp2)
+			ans = append(ans, t)
+		}
+		return
+	}
+	if nums[cur] >= last {
+		temp2 = append(temp2, nums[cur])
+		dfs(cur + 1, nums[cur], nums)
+		temp2 = temp[:len(temp2)-1]
+	}
+	if nums[cur] != last {
+		dfs(cur + 1, last, nums)
+	}
+}
 
